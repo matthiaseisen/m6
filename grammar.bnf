@@ -1,0 +1,149 @@
+<exprs>     ::=     <expr> <exprs>
+            |       <expr>
+<expr>      ::= 	( <builtin> )
+            |    	( <id> < values> )
+            |   	( <values> )
+            | 	    ( )
+<values> 	::= 	<value> <values>
+            |   	<value>
+<value> 	::= 	<expr>
+            |   	<id>
+            | 	    <literal>
+            | 	    <number>
+            |    	<boolean>
+            | 	    <set>
+<id>     	::=     <letter> <idchars>
+            | 	    <letter>
+<idchars> 	::= 	<idchar> <idchars>
+            |   	<idchar>
+<idchar> 	::= 	<letter>
+            |   	<digit>
+            |   	_
+            |   	-
+<letter> 	::= 	<letter-lc>
+            | 	    <letter-uc>
+<letter-lc>	::= 	a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+<letter-uc>	::= 	A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+<digit> 	::= 	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<boolean> 	::= 	True
+            |   	False
+<set>   	::=   	{ <values> }
+            |   	{ }
+<literal> 	::= 	` <text> `
+            |    	,, <text> ;;
+<number> 	::= 	<digits> . <digits>
+            |    	<digits>
+<digits> 	::= 	<digit> <digits>
+            |    	<digit>
+<builtin> 	::= 	<map> <id> <values>
+            |    	<fold> <value> <id> <value>
+            |   	<let> <id> <value> <expr>
+            |    	<include> <literal>
+            |    	<include> <literal> <exprs>
+            |    	<define> <id>
+            |    	<define> <id> <checks>
+            |    	<define> <id> <checks> <defaults>
+            |    	<sum> <values>
+            |    	<or> <values>
+            |    	<concat> <values>
+            |    	<union> <values>
+            |    	<diff> <value> <value>
+            |    	<not> <value>
+            |    	<strip> <value> <value>
+            |    	<mult> <values>
+            |    	<and> <values>
+            |    	<intersect> <values>
+            |    	<quot> <value> <value>
+            |    	<split> <value> <value>
+            |    	<fdiv> <value> <value>
+            |    	<pow> <value> <value>
+            |    	<perm> <value>
+            |    	<del> <value> <value>
+            |    	<setdiff> <value> <value>
+            |    	<rstrip> <value> <value>
+            |    	<lstrip> <value> <value>
+            |    	<rpad> <value> <value>
+            |    	<lpad> <value> <value>
+            |    	<rsplit> <value> <value>
+            |    	<lsplit> <value> <value>
+            |    	<head> <value>
+            |    	<tail> <value>
+            |    	<len> <value>
+            |    	<card> <value>
+            |    	<regex> <value>
+            |    	<filter> <value> <value>
+            |    	<fact> <value>
+<map>   	::=    	map
+            |    	#
+<fold>  	::=    	fold
+            |   	~
+<let>    	::=     let
+            |   	::=
+<include> 	::= 	include
+            |    	@
+<define> 	::= 	def
+            |    	:=
+<sum>    	::= 	sum
+            |    	+
+<or>    	::= 	or
+            |    	+
+<concat> 	::= 	concat
+            |    	+
+<union> 	::= 	union
+            |    	+
+<diff>  	::= 	diff
+            |    	-
+<not>    	::= 	not
+            |    	-
+<strip> 	::= 	strip
+            |    	-
+<mult>  	::= 	mult
+            |    	*
+<and>    	::= 	and
+            |    	*
+<intersect> ::= 	intersect
+            |    	*
+<quot>   	::= 	quot
+            |    	/
+<split> 	::= 	split
+            |    	/
+<fdiv>   	::= 	fdiv
+            |   	//
+<pow>   	::= 	pow
+            |    	^
+<perm>  	::= 	perm
+            |    	^
+<del>    	::= 	del
+            |    	\
+<setdiff> 	::= 	setdiff
+            |    	\
+<rstrip> 	::= 	rstrip
+            |   	_-
+<lstrip> 	::= 	lstrip
+            |   	-_
+<rpad>  	::= 	rpad
+            |   	_+
+<lpad>  	::= 	lpad
+            |   	+_
+<rsplit> 	::= 	rsplit
+            |   	_/
+<lsplit> 	::= 	lsplit
+            |   	/_
+<head>  	::= 	head
+            |   	./
+<tail>  	::= 	tail
+            |    	/...
+<len>    	::= 	len
+            |    	|_|
+<card>   	::= 	card
+            |   	|_|
+<regex> 	::= 	regex
+            |    	$
+<filter> 	::= 	filter
+            |   	|
+<fact>  	::= 	fact
+            |    	!
+<checks> 	::= 	<check> <checks>
+            |   	<check>
+<check> 	::= 	( <- <id> <expr> )
+            |   	<id> <- <expr>
